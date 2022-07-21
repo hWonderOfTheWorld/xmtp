@@ -76,9 +76,18 @@ const useConversation = (
   const handleSend = useCallback(
     async (message: string) => {
       if (!conversation) return
-      await conversation.send(message)
+      const msg = await conversation.send(message)
+      if (dispatchMessages) {
+        dispatchMessages({
+          peerAddress,
+          messages: [msg],
+        })
+      }
+      if (onMessageCallback) {
+        onMessageCallback()
+      }
     },
-    [conversation]
+    [conversation, peerAddress, dispatchMessages, onMessageCallback]
   )
 
   return {

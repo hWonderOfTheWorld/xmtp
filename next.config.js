@@ -13,6 +13,11 @@ const nextConfig = optimizedImages({
     }
     return config
   },
+  env: {
+    XMTP_QUERY_URL: process.env.XMTP_QUERY_URL,
+    XMTP_TX_URL: process.env.XMTP_TX_URL,
+    XMTP_WS_URL: process.env.XMTP_WS_URL,
+  },
 })
 
 module.exports = nextConfig
