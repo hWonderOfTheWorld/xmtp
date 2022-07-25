@@ -71,9 +71,10 @@ export const XmtpProvider: React.FC = ({ children }) => {
   useEffect(() => {
     const streamConversations = async () => {
       if (!client) return
-      const stream = await client.conversations.stream()
-      for await (const convo of stream) {
-        dispatchConversations([convo])
+      const stream = await client.conversations.streamAllMessages()
+      for await (const message of stream) {
+        console.log('New message: ' + message.content)
+        dispatchConversations(await client.conversations.list())
       }
     }
     streamConversations()
