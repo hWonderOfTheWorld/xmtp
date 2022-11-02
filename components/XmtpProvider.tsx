@@ -4,6 +4,7 @@ import { Signer } from 'ethers'
 import { getEnv } from '../helpers'
 import { XmtpContext, XmtpContextType } from '../contexts/xmtp'
 import { WalletContext } from '../contexts/wallet'
+import { version } from '../package.json'
 
 export const XmtpProvider: React.FC = ({ children }) => {
   const [client, setClient] = useState<Client | null>()
@@ -21,7 +22,12 @@ export const XmtpProvider: React.FC = ({ children }) => {
     async (wallet: Signer) => {
       if (wallet && !client) {
         try {
-          setClient(await Client.create(wallet, { env: getEnv() }))
+          setClient(
+            await Client.create(wallet, {
+              env: getEnv(),
+              appVersion: 'xmtp-chat/' + version,
+            })
+          )
         } catch (e) {
           console.error(e)
           setClient(null)
