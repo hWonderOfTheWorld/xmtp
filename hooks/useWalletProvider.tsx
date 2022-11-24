@@ -42,7 +42,7 @@ const useWalletProvider = () => {
     
     const address = await providerWithEBPTORegistry.resolveName(name) || undefined
     
-
+    console.log('address', address)
     //const address = (await provider?.resolveName(name)) || undefined
     cachedResolveName.set(name, address)
     return address
@@ -65,7 +65,8 @@ const useWalletProvider = () => {
     });
     
     const name = await providerWithEBPTORegistry.lookupAddress(address) || undefined
-  
+    
+    console.log('name', name)
     
     //const name = (await provider?.lookupAddress(address)) || undefined
     cachedLookupAddress.set(address, name)
