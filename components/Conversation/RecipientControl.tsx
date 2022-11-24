@@ -71,7 +71,7 @@ const RecipientControl = ({
       }
       const input = e.target as HTMLInputElement
       const recipientValue = value || data.recipient.value
-      if (recipientValue.endsWith('eth')) {
+      if (recipientValue.endsWith('ip')) {
         setRecipientInputMode(RecipientInputMode.FindingEntry)
         const address = await resolveName(recipientValue)
         if (address) {
@@ -144,7 +144,7 @@ const RecipientControl = ({
           {recipientInputMode === RecipientInputMode.NotOnNetwork &&
             'Recipient is not on the XMTP network'}
           {recipientInputMode === RecipientInputMode.FindingEntry &&
-            'Finding ENS domain...'}
+            'Finding IP domain...'}
           {recipientInputMode === RecipientInputMode.InvalidEntry &&
             'Please enter a valid wallet address'}
           {recipientInputMode === RecipientInputMode.ValidEntry && <br />}

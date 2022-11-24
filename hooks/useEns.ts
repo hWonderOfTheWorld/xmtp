@@ -11,7 +11,7 @@ const useEns = (addressOrName: string | undefined) => {
     addressOrName?.startsWith('0x') && addressOrName?.length === 42
       ? addressOrName
       : undefined
-  const probableName = addressOrName?.endsWith('.eth')
+  const probableName = addressOrName?.endsWith('.ip')
     ? addressOrName
     : undefined
 
