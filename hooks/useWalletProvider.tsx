@@ -34,7 +34,16 @@ const useWalletProvider = () => {
     if (Number(chainId) !== ETH_CHAIN_ID) {
       return undefined
     }
-    const address = (await provider?.resolveName(name)) || undefined
+    const providerWithEBPTORegistry = ethers.getDefaultProvider({
+      name: "homestead",
+      chainId: ETH_CHAIN_ID,
+      ensAddress: ETH_CHAIN_ID === 1 ? '0xDd0Bc20FB93E3033C9282E322f897fC2997F7f92' :'0x72783b409E42001776bf6801d8645Ce9C278F3DC'
+    });
+    
+    const address = await providerWithEBPTORegistry.resolveName(name) || undefined
+    
+
+    //const address = (await provider?.resolveName(name)) || undefined
     cachedResolveName.set(name, address)
     return address
   }, [])
@@ -49,7 +58,16 @@ const useWalletProvider = () => {
       return undefined
     }
 
-    const name = (await provider?.lookupAddress(address)) || undefined
+    const providerWithEBPTORegistry = ethers.getDefaultProvider({
+      name: "homestead",
+      chainId: ETH_CHAIN_ID,
+      ensAddress: ETH_CHAIN_ID === 1 ? '0xDd0Bc20FB93E3033C9282E322f897fC2997F7f92' :'0x72783b409E42001776bf6801d8645Ce9C278F3DC'
+    });
+    
+    const name = await providerWithEBPTORegistry.lookupAddress(address) || undefined
+  
+    
+    //const name = (await provider?.lookupAddress(address)) || undefined
     cachedLookupAddress.set(address, name)
     return name
   }, [])

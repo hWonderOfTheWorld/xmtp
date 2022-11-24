@@ -98,7 +98,7 @@ const RecipientControl = ({
         router.push('/dm')
       }
       if (
-        data.value.endsWith('.eth') ||
+        data.value.endsWith('.ip') ||
         (data.value.startsWith('0x') && data.value.length === 42)
       ) {
         handleSubmit(e, data.value)

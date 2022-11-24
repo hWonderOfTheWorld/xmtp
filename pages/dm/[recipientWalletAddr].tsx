@@ -19,7 +19,7 @@ const ConversationPage: NextPage = () => {
   const redirectToHome = async () => {
     if (checkPath()) {
       let queryAddress = window.location.pathname.replace('/dm/', '')
-      if (queryAddress.includes('.eth')) {
+      if (queryAddress.includes('.ip')) {
         queryAddress = (await resolveName(queryAddress)) ?? ''
       }
       if (!queryAddress) {
